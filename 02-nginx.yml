@@ -1,0 +1,40 @@
+- name: install nginx on ubuntu server
+  hosts: all
+  become: true
+  tasks:
+    - name: install nginx on Redhat servers
+      ansible.buildin.dnf:
+        name: nginx
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: install nginx on ubuntu servers
+      ansible.buildin.apt:
+        name: nginx
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Start nginx service on Redhad Servers
+      ansible.buildin.systemd:
+        name: nginx
+        state: started
+        enabled: true
+      when: ansible_os_family == 'RedHat'
+
+    - name: Start nginx service on Ubuntu Servers
+      ansible.buildin.systemd:
+        name: nginx
+        state: started
+        enabled: true
+      when: ansible_os_family == 'Debian'
+    - name: Ensure nginx is running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+    - name: Ensure nginx is running
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: true
+      when: ansible_os_family == 'Debian'
