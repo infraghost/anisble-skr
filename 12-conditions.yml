@@ -1,0 +1,27 @@
+- name: Ansible Conditions
+  hosts: all
+  become: yes
+  tasks:
+    - name: Check user exists or not
+      ansible.builtin.command: id hemasivakishore111
+      ignore_errors: yes
+      register: user_check
+
+    - name: Print user check result
+      ansible.builtin.debug:
+        msg: "User exists: {{ user_check }}"
+
+    - name: Create user if not exists
+      ansible.builtin.user:
+        name: hemasivakishore111
+        state: present
+      when: user_check.rc != 0
+      register: user_creation
+
+    - name: Print user creation result
+      ansible.builtin.debug:
+        msg: "User creation result: {{ user_check }}"
+
+    - name: Dummy message
+      ansible.builtin.debug:
+        msg: "User exists"

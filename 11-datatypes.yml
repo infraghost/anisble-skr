@@ -1,0 +1,35 @@
+- name: Data types
+  hosts: localhost
+  vars:
+    my_variable: Datatypes in Ansible #string
+    Cloud: #list
+      - AWS
+      - Azure
+      - GCP
+      - OC
+    my_map: #map
+      cmt: Ansible
+      scm: git
+      iac: terraform
+      total_clouds: 4 #number
+      my_bool: true #boolean
+  tasks:
+    - name: Pringint Variables
+      ansible.builtin.debug:
+        msg: |
+          my_variable: {{ my_variable }}
+          Cloud: {{ Cloud }}
+          my_map: {{ my_map }}
+          my_map.cmt: {{ my_map.cmt }}
+          my_map.scm: {{ my_map.scm }}
+          my_map.iac: {{ my_map.iac }}
+          my_map.total_clouds: {{ my_map.total_clouds }}
+          my_map.my_bool: {{ my_map.my_bool }}
+          my_variable_type: {{ my_variable | type_debug }}
+          Cloud_type: {{ Cloud | type_debug }}
+          my_map_type: {{ my_map | type_debug }}
+          my_map.cmt_type: {{ my_map.cmt | type_debug }}
+          my_map.scm_type: {{ my_map.scm | type_debug }}
+          my_map.iac_type: {{ my_map.iac | type_debug }}
+          my_map.total_clouds_type: {{ my_map.total_clouds | type_debug }}
+          my_map.my_bool_type: {{ my_map.my_bool | type_debug }}
