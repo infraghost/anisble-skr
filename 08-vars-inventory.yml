@@ -1,0 +1,6 @@
+- name: Variables from Inventory File inventory.ini
+  hosts: localhost
+  tasks:
+    - name: Printing Inventory file Variables
+      ansible.builtin.debug:
+        msg: "Hi, This is Inventory file Variables {{IP}}"
