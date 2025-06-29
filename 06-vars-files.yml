@@ -1,0 +1,16 @@
+- name: Variables from files
+  hosts: all
+  vars_files:
+    - 05-vars.yml
+  tasks:
+    - name: Printing Variables from other file
+      ansible.builtin.debug:
+        msg: "Hi, This is Infraghost Testing Ansible variables from other file"
+
+    - name: Printing Variable-1
+      ansible.builtin.debug:
+        msg: "Variable-1 {{ my_variable }}"
+
+    - name: Printing Variable-2
+      ansible.builtin.debug:
+        msg: "Variable-2 {{ task }}"

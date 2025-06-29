@@ -1,0 +1,2 @@
+my_variable: "This is Infraghost"
+task: "Testing Ansible Variables"

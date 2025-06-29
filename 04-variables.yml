@@ -1,0 +1,14 @@
+- name: variables
+  hosts: all
+  vars:
+    my_variable: "This is Infraghost"
+  tasks:
+    - name: Printing Variables
+      vars:
+        my_variable: "Infraghost"
+      ansible.builtin.debug:
+        msg: "We are Testing Variables in Ansible, {{ my_variable }}"
+
+    - name: Printing Information
+      ansible.builtin.debug:
+        msg: "We are Testing Variables in Ansible, {{ my_variable }}"
