@@ -16,3 +16,10 @@
         msg: "Hello, Variable from: {{ my_variable }}"
 # Run as below
 #ansible-playbook -i inventory.ini 10-variable-preference.yml -e "my_variable=From-arguments-CMD"
+# List of Preference
+# 1. Arguments
+# 2. Task Level
+# 3. Variable files
+# 4. prompt
+# 5. Play Level
+# 6. Inventory
