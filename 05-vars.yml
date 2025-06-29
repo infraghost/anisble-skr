@@ -1,2 +1,2 @@
-my_variable: "This is Infraghost"
+my_variable: "This is Infraghost from variables file"
 task: "Testing Ansible Variables"

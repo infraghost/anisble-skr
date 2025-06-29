@@ -1,0 +1,6 @@
+- name: Variables from arguments
+  hosts: all
+  tasks:
+  - name: Get Variables from Args
+    ansible.builtin.debug:
+      msg: "Hello, This is {{NAME}}, Github name is {{GITHUBNAME}}"

@@ -1,0 +1,18 @@
+- name: Variable Preference "Testing
+  hosts: localhost
+  vars:
+    my_variable: "variable from play section"
+  vars_files:
+    - 05-vars.yml
+  vars_prompt:
+    - name: my_variable
+      prompt: Please enter my_variable
+      private: false
+  tasks:
+    - name: Check Preference
+      vars:
+        my_variable: "variable from tasks section"
+      ansible.builtin.debug:
+        msg: "Hello, Variable from: {{ my_variable }}"
+# Run as below
+#ansible-playbook -i inventory.ini 10-variable-preference.yml -e "my_variable=From-arguments-CMD"
