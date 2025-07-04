@@ -1,0 +1,25 @@
+- name: Loops
+  hosts: localhost
+  tasks:
+    - name: Print numbers from 1 to 5
+      ansible.builtin.debug:
+        msg: "Number: {{ item }}"
+      loop: "{{ range(1, 6) | list }}"
+
+    - name: Print items in a list
+      ansible.builtin.debug:
+        msg: "Item: {{ item }}"
+      loop:
+        - apple
+        - banana
+        - cherry
+
+    - name: Print key-value pairs in a dictionary
+      ansible.builtin.debug:
+        msg: "Key: {{ item.key }}, Value: {{ item.value }}"
+      loop: "{{ my_dict | dict2items }}"
+      vars:
+        my_dict:
+          name: Ansible
+          version: 2.9
+          type: automation tool

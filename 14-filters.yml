@@ -12,3 +12,66 @@
     - name: Print Upper Case Name
       ansible.builtin.debug:
         msg: "The upper case name is {{ name | upper }}"
+
+- name: Lower Case
+  hosts: localhost
+  vars:
+    name: "Ansible"
+  tasks:
+    - name: Print Lower Case Name
+      ansible.builtin.debug:
+        msg: "The lower case name is {{ name | lower }}"
+
+- name: Capitalize
+  hosts: localhost
+  vars:
+    name: "ansible"
+  tasks:
+    - name: Print Capitalized Name
+      ansible.builtin.debug:
+        msg: "The capitalized name is {{ name | capitalize }}"
+
+- name: Remove Duplicates
+  hosts: localhost
+  vars:
+    items: [1, 2, 2, 3, 4, 4, 5]
+  tasks:
+    - name: Print Unique Items
+      ansible.builtin.debug:
+        msg: "The unique items are {{ items | unique }}"
+
+- name: Minimum and Maximum
+  hosts: localhost
+  vars:
+    numbers: [5, 3, 8, 1, 4]
+  tasks:
+    - name: Print Minimum Number
+      ansible.builtin.debug:
+        msg: "The minimum number is {{ numbers | min }}"
+    - name: Print Maximum Number
+      ansible.builtin.debug:
+        msg: "The maximum number is {{ numbers | max }}"
+
+- name: Sort List
+  hosts: localhost
+  vars:
+    fruits: ["banana", "apple", "cherry"]
+  tasks:
+    - name: Print Sorted Fruits
+      ansible.builtin.debug:
+        msg: "The sorted fruits are {{ fruits | sort }}"
+
+- name: Convert Dictionary into items/list
+  hosts: localhost
+  vars:
+    my_dict:
+      cicd: jenkins
+      cloud: aws
+      iac: terraform
+  tasks:
+    - name: Print Dictionary Items
+      ansible.builtin.debug:
+        msg:
+          - "Before conversion: {{ my_dict }}"
+          - "The dictionary items are {{ my_dict | dict2items }}"
+          #- "Convert Items to Dictionary: {{ my_dict | items2dict }}"
