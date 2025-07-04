@@ -1,13 +1,10 @@
-- name: Check number
+- name: Calculate Even or Odd Number
   hosts: localhost
-  gather_facts: false
-
   vars_prompt:
     - name: number
-      type: int
-      description: "Enter a number to check if it's even or odd"
-      prompt: "Please enter a number"
-      private: no
+      #type: int #getting error when using type: int
+      prompt: Plese enter your number
+      private: false
 
   tasks:
     - name: Ensure the number is defined
@@ -20,28 +17,28 @@
     - name: Ensure the number is an integer
       ansible.builtin.assert:
         that:
-          - number is integer
-        success_msg: "The number {{ number }} is an integer."
-        fail_msg: "The input {{ number }} is not an integer."
+          - number | int  is integer
+        success_msg: "The number {{ number | int }} is an integer."
+        fail_msg: "The input {{ number | int }} is not an integer."
 
     - name: Ensure the number is non-negative
       ansible.builtin.assert:
         that:
-          - number >= 0
-        success_msg: "The number {{ number }} is non-negative."
-        fail_msg: "The number {{ number }} is negative."
+          - number  | int >= 0
+        success_msg: "The number {{ number | int }} is non-negative."
+        fail_msg: "The number {{ number | int }} is negative."
 
     - name: Ensure the number is less than 100
       ansible.builtin.assert:
         that:
-          - number < 100
-        success_msg: "The number {{ number }} is less than 100."
-        fail_msg: "The number {{ number }} is 100 or greater."
+          - number | int < 100
+        success_msg: "The number {{ number | int }} is less than 100."
+        fail_msg: "The number {{ number | int }} is 100 or greater."
 
-    - name: Check if the given number is even or odd
+    - name: Check if the given number | int is even or odd
       ansible.builtin.assert:
         that:
-          - (number % 2) == 0
-        success_msg: "The number {{ number }} is even."
-        fail_msg: "The number {{ number }} is odd."
+          - (number | int % 2) == 0
+        success_msg: "The number {{ number | int }} is even."
+        fail_msg: "The number {{ number | int }} is odd."
       when: number is defined
