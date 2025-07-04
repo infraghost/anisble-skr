@@ -1,11 +1,14 @@
 - name: Check number
   hosts: localhost
+  gather_facts: false
+
   vars_prompt:
     - name: number
       type: int
       description: "Enter a number to check if it's even or odd"
       prompt: "Please enter a number"
       private: no
+
   tasks:
     - name: Ensure the number is defined
       ansible.builtin.assert:
@@ -27,17 +30,18 @@
           - number >= 0
         success_msg: "The number {{ number }} is non-negative."
         fail_msg: "The number {{ number }} is negative."
+
     - name: Ensure the number is less than 100
       ansible.builtin.assert:
         that:
-          - number < 10
-        success_msg: "The number {{ number }} is less than 10."
-        fail_msg: "The number {{ number }} is 10 or greater."
+          - number < 100
+        success_msg: "The number {{ number }} is less than 100."
+        fail_msg: "The number {{ number }} is 100 or greater."
 
     - name: Check if the given number is even or odd
-      ansible.buildin.assert:
+      ansible.builtin.assert:
         that:
-          - number % 2 == 0
+          - (number % 2) == 0
         success_msg: "The number {{ number }} is even."
         fail_msg: "The number {{ number }} is odd."
       when: number is defined
