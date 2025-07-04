@@ -27,7 +27,7 @@
           - number >= 0
         success_msg: "The number {{ number }} is non-negative."
         fail_msg: "The number {{ number }} is negative."
-    - name: Ensure the number is less than 100
+    - name: Ensure the number is less than 10
       ansible.builtin.assert:
         that:
           - number < 10
